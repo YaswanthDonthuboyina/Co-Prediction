@@ -4,7 +4,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Import from our custom module
-from feature_engineering import create_features
+from .feature_engineering import create_features
 
 # --- Configuration ---
 # This script should be run from the project root

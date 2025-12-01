@@ -5,3 +5,4 @@ scipy
 fastapi
 uvicorn[standard]
 joblib
+openpyxl

@@ -1,37 +1,51 @@
-# Use an official Python runtime as a parent image
-FROM python:3.11-slim
+# syntax=docker/dockerfile:1
 
-# Set environment variables
-# 1. Prevents Python from writing .pyc files to disc
-# 2. Prevents Python from buffering stdout and stderr
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Dockerfile reference guide at
+# https://docs.docker.com/go/dockerfile-reference/
 
-# Set the working directory in the container
+# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
+
+ARG PYTHON_VERSION=3.13.5
+FROM python:${PYTHON_VERSION}-slim as base
+
+# Prevents Python from writing pyc files.
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Keeps Python from buffering stdout and stderr to avoid situations where
+# the application crashes without emitting any logs due to buffering.
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-# Copy the dependencies file to the working directory
-COPY requirements.txt .
+# Create a non-privileged user that the app will run under.
+# See https://docs.docker.com/go/dockerfile-user-best-practices/
+ARG UID=10001
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    appuser
 
-# Install any needed packages specified in requirements.txt
-# --no-cache-dir: Disables the cache to keep the image size smaller
-# --upgrade: Ensures pip is updated
-RUN pip install --no-cache-dir --upgrade pip -r requirements.txt
+# Download dependencies as a separate step to take advantage of Docker's caching.
+# Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
+# Leverage a bind mount to requirements.txt to avoid having to copy them into
+# into this layer.
+RUN --mount=type=cache,target=/root/.cache/pip \
+    --mount=type=bind,source=requirements.txt,target=requirements.txt \
+    python -m pip install -r requirements.txt
 
-# Copy the local directories to the container
-# Copy source code for preprocessing, feature engineering, and prediction
-COPY ./src /app/src
-# Copy the API application code
-COPY ./api /app/api
-# Copy the trained model, scaler, and OOD detector
-COPY ./models /app/models
+# Switch to the non-privileged user to run the application.
+USER appuser
 
+# Copy the source code into the container.
+COPY . .
 
-# Expose the port the app runs on
+# Expose the port that the application listens on.
 EXPOSE 8000
 
-# Define the command to run the application
-# uvicorn will start the FastAPI application
-# --host 0.0.0.0 makes the app accessible from outside the container
-# --port 8000 specifies the port to run on
+# Run the application.
 CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]

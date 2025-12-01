@@ -10,8 +10,8 @@ from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from scipy.stats import zscore
 
 # Import from our custom modules
-from data_preprocessing import load_and_clean_data
-from feature_engineering import create_features
+from .data_preprocessing import load_and_clean_data
+from .feature_engineering import create_features
 
 # --- Configuration ---
 # Define paths relative to the project root

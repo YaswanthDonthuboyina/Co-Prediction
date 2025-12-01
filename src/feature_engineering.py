@@ -42,7 +42,7 @@ def create_features(data: pd.DataFrame) -> pd.DataFrame:
 
 if __name__ == '__main__':
     # This block allows you to run this script directly for testing
-    from data_preprocessing import load_and_clean_data
+    from .data_preprocessing import load_and_clean_data
     
     DATA_FILE_PATH = 'AirQualityUCI.xlsx'
     

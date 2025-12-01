@@ -4,16 +4,8 @@ from pydantic import BaseModel
 from datetime import datetime
 from pathlib import Path
 
-# Add the 'src' directory to the Python path
-# This is necessary so we can import our custom modules
-sys.path.append(str(Path(__file__).resolve().parents[1] / 'src'))
-
 # Now we can import our prediction function
-try:
-    from predict import make_prediction
-except ImportError as e:
-    # Provide a helpful error message if the src module isn't found
-    raise ImportError(f"Could not import 'predict' module. Ensure 'src/predict.py' exists and the script is run from the project root. Details: {e}")
+from src.predict import make_prediction
 
 
 # --- FastAPI App Initialization ---
@@ -122,4 +114,6 @@ def predict_co_level(input_data: PredictionInput) -> dict:
 # To run this app:
 # 1. Ensure you are in the project root directory.
 # 2. Run the command: uvicorn api.app:app --reload
+# 3. Open your browser to http://127.0.0.1:8000
+
 # 3. Open your browser to http://127.0.0.1:8000
