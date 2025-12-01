@@ -18,7 +18,7 @@ This project develops and validates a machine learning system to predict Carbon 
 ├── air+quality.zip         # Original zipped dataset
 ├── api/
 │   └── app.py              # FastAPI application script
-├── models/                 # (Git-ignored) Trained model, scaler, and OOD detector
+├── models/                 # Trained model, scaler, and OOD detector
 ├── notebooks/
 │   └── co_prediction.ipynb # Main exploratory and analysis notebook
 ├── src/
