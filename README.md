@@ -94,7 +94,13 @@ This uses the containerized application.
    ```
 The API will be available at `http://127.0.0.1:8000`.
 
-### 4. Use the API
+### 4. Deployed API
+
+Your application is deployed on Render and is accessible at:
+- **Base URL:** [https://co-prediction.onrender.com/](https://co-prediction.onrender.com/)
+- **API Documentation (Swagger UI):** [https://co-prediction.onrender.com/docs](https://co-prediction.onrender.com/docs)
+
+### 5. Use the API
 Once the API is running, you can interact with it.
 
 #### Interactive Docs (Swagger UI)
