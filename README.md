@@ -1,4 +1,4 @@
-# CO Prediction with Out-of-Distribution Detection
+# AirGuard: CO Forecasting & Anomaly Detection System
 
 This project develops and validates a machine learning system to predict Carbon Monoxide (CO) levels from the AirQualityUCI dataset. It includes a complete end-to-end workflow from data cleaning and model training to a deployable API for live predictions.
 
