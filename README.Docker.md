@@ -5,6 +5,12 @@ When you're ready, start your application by running:
 
 Your application will be available at http://localhost:8000.
 
+### Deployed Application
+
+Your application is deployed and available at:
+- **Base URL:** [https://co-prediction.onrender.com/](https://co-prediction.onrender.com/)
+- **API Documentation (Swagger UI):** [https://co-prediction.onrender.com/docs](https://co-prediction.onrender.com/docs)
+
 ### Deploying your application to the cloud
 
 First, build your image, e.g.: `docker build -t myapp .`.
