@@ -141,47 +141,22 @@ curl -X POST "http://127.0.0.1:8000/predict" \
 ## Summary of Results
 The final model, a tuned `GradientBoostingRegressor`, achieved a mean R² of **0.916** across 5-fold cross-validation. The Out-of-Distribution (OOD) detection module was able to correctly identify synthetic anomalous data with **96% accuracy**.
 
-## 📚 Comprehensive Documentation
+## System Architecture
 
-For detailed information about the system, please refer to our comprehensive documentation:
+### High-Level Architecture
+![Architecture Diagram](docs/images/architecture_diagram.png)
 
-### 📖 **[Documentation Index](docs/README.md)**
-Complete guide to all documentation with navigation paths for different user types.
+### Data Flow Pipeline
+![Data Flow Diagram](docs/images/data_flow_diagram.png)
 
-### 📡 **[API Usage Guide](docs/API_USAGE_GUIDE.md)**
-- Complete API reference
-- Request/response examples
-- Code samples (Python, JavaScript, cURL)
-- Field descriptions and best practices
-- Interactive Swagger UI documentation
+### Key Components
+- **Data Pipeline:** Handles preprocessing, feature engineering (temporal, cyclical, interactions), and outlier removal.
+- **Dual OOD Detection:** 
+  1. **Training:** Z-score based outlier removal.
+  2. **Inference:** Isolation Forest anomaly detection.
+- **Model:** Gradient Boosting Regressor (R² = 0.916).
+- **Deployment:** FastAPI service containerized with Docker.
 
-### 🏗️ **[System Architecture](docs/ARCHITECTURE.md)**
-- High-level architecture overview
-- Component diagrams and data flows
-- Module descriptions
-- Technology stack details
-- Deployment architecture
-- Scalability and security considerations
-
-### 📊 **[Model Performance Benchmarks](docs/MODEL_PERFORMANCE.md)**
-- Detailed performance metrics (R², MAE, RMSE)
-- Cross-validation results
-- Model comparison with baselines
-- OOD detection performance analysis
-- Feature importance rankings
-- Computational performance benchmarks
-- Validation methodology
-
-### 🔧 **[Troubleshooting Guide](docs/TROUBLESHOOTING.md)**
-- Installation and setup issues
-- Training pipeline problems
-- API errors and solutions
-- Docker deployment issues
-- Model performance troubleshooting
-- Common error messages and fixes
-- Frequently asked questions
-
-### 🎯 Quick Links
+### Quick Links
 - **Production API:** [https://co-prediction.onrender.com](https://co-prediction.onrender.com)
 - **Interactive API Docs:** [https://co-prediction.onrender.com/docs](https://co-prediction.onrender.com/docs)
-- **GitHub Repository:** [https://github.com/YaswanthDonthuboyina/Co-Prediction](https://github.com/YaswanthDonthuboyina/Co-Prediction)
