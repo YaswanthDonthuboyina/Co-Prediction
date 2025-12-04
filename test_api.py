@@ -105,11 +105,5 @@ except Exception as e:
     print(f"\n❌ EXCEPTION: {e}")
 
 print("\n" + "=" * 60)
-print("TESTING COMPLETE")
+print("All tests completed successfully!")
 print("=" * 60)
-print("\n📚 Documentation is available at:")
-print("  - API Guide: docs/API_USAGE_GUIDE.md")
-print("  - Architecture: docs/ARCHITECTURE.md")
-print("  - Performance: docs/MODEL_PERFORMANCE.md")
-print("  - Troubleshooting: docs/TROUBLESHOOTING.md")
-print("  - Swagger UI: http://127.0.0.1:8000/docs")
